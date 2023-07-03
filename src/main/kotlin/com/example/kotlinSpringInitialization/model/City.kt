@@ -3,7 +3,7 @@ package com.example.kotlinSpringInitialization.model
 import jakarta.persistence.*
 
 @Entity
-@Table(schema = "project", name = "cities")
+@Table(schema = "project", name = "city")
 class City(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -14,7 +14,7 @@ class City(
     val name: String,
 
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
-    val users: List<User>) {
+    val authors: List<Author>) {
 
     override fun toString(): String {
         return "City(id=$id, name='$name')"

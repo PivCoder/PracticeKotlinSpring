@@ -5,7 +5,7 @@ import com.example.kotlinSpringInitialization.model.enums.States
 import jakarta.persistence.*
 //TODO попробоовать id вынести в абстрактную сущность, generation type Auto
 @Entity
-@Table(schema = "project", name = "articles")
+@Table(schema = "project", name = "article")
 class Article(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -26,11 +26,11 @@ class Article(
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
-        name = "articles_users",
+        name = "article_author",
         joinColumns = [JoinColumn(name = "articles_id")],
-        inverseJoinColumns = [JoinColumn(name = "users_id")]
+        inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
-    val users: List<User>) {
+    val authors: List<Author>) {
 
     override fun toString(): String {
         return "Article(id=$id, " +

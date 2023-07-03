@@ -3,7 +3,7 @@ package com.example.kotlinSpringInitialization.model
 import jakarta.persistence.*
 
 @Entity
-@Table(schema = "project", name = "journals")
+@Table(schema = "project", name = "journal")
 class Journal(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,

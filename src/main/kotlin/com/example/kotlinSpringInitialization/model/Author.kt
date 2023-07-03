@@ -3,8 +3,8 @@ package com.example.kotlinSpringInitialization.model
 import jakarta.persistence.*
 
 @Entity
-@Table(schema = "project", name = "users")
-class User(
+@Table(schema = "project", name = "author")
+class Author(
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
         generator = "user_seq")
@@ -25,11 +25,11 @@ class User(
     @JoinColumn(name = "city_id")
     val city: City,
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "users")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "authors")
     val articles: List<Article>) {
 
     override fun toString(): String {
-        return "User(id=$id, " +
+        return "Author(id=$id, " +
                 "name='$name', " +
                 "surname='$surname', " +
                 "patronymic='$patronymic', " +
