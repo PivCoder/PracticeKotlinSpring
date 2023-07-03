@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5522/Journal
+    username: postgres
+    password: root
+
+  flyway:
+    locations:
+      - classpath:db/migration
+      - classpath:db/callback
+    baseline-on-migrate: true
+
+  jpa:
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        ddl.auto: false
+        show_sql: true
+        format_sql: true
