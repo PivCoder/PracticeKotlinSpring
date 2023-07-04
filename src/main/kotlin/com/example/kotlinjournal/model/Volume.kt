@@ -7,12 +7,7 @@ import jakarta.persistence.*
 @Entity
 @Table(schema = "project", name = "volume")
 class Volume(
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-        generator = "volume_seq")
-    @SequenceGenerator(name = "volume_seq",
-        sequenceName = "project.volumes_id")
-    val id: Long,
+
     val name: String,
 
     @JsonManagedReference
@@ -22,9 +17,11 @@ class Volume(
 
     @JsonBackReference
     @OneToMany(mappedBy = "volume", fetch = FetchType.LAZY)
-    val articles: List<Article>) {
+    val articles: List<Article>,
+
+    id: Long) : AbstractEntity(id) {
 
     override fun toString(): String {
-        return "Volume(id=$id, name='$name')"
+        return "Volume(name='$name')"
     }
 }

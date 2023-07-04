@@ -4,9 +4,9 @@ import com.example.kotlinjournal.model.Author
 import java.util.*
 
 interface UserService {
-    fun addUser(author: Author): Author
-    fun getUserById(id: Long): Optional<Author>
-    fun deleteUserById(id: Long)
-    fun editUser(author: Author)
-    fun getAllUsers(): List<Author>
+    fun add(author: Author): Author
+    fun getById(id: Long): Optional<Author>
+    fun deleteById(id: Long)
+    fun edit(author: Author)
+    fun getAll(): List<Author>
 }

@@ -8,23 +8,23 @@ import java.util.*
 
 @Service
 class OrganizationServiceImpl(private val organizationRepository: OrganizationRepository) : OrganizationService{
-    override fun addOrganization(organization: Organization): Organization {
+    override fun add(organization: Organization): Organization {
         return organizationRepository.save(organization)
     }
 
-    override fun getOrganizationById(id: Long): Optional<Organization> {
+    override fun getById(id: Long): Optional<Organization> {
         return organizationRepository.findById(id)
     }
 
-    override fun deleteOrganizationById(id: Long) {
+    override fun deleteById(id: Long) {
         organizationRepository.deleteById(id)
     }
 
-    override fun editOrganization(organization: Organization) {
+    override fun edit(organization: Organization) {
         organizationRepository.save(organization)
     }
 
-    override fun getAllOrganizations(): List<Organization> {
+    override fun getAll(): List<Organization> {
         return organizationRepository.findAll()
     }
 }

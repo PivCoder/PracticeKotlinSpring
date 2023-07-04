@@ -4,9 +4,9 @@ import com.example.kotlinjournal.model.Publisher
 import java.util.*
 
 interface PublisherService {
-    fun addPublisher(publisher: Publisher): Publisher
-    fun getPublisherById(id: Long): Optional<Publisher>
-    fun deletePublisherById(id: Long)
-    fun editPublisher(publisher: Publisher)
-    fun getAllPublishers(): List<Publisher>
+    fun add(publisher: Publisher): Publisher
+    fun getById(id: Long): Optional<Publisher>
+    fun deleteById(id: Long)
+    fun edit(publisher: Publisher)
+    fun getAll(): List<Publisher>
 }

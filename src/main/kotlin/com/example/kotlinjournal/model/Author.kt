@@ -7,12 +7,6 @@ import jakarta.persistence.*
 @Entity
 @Table(schema = "project", name = "author")
 class Author(
-    @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-        generator = "user_seq")
-    @SequenceGenerator(name = "user_seq",
-        sequenceName = "project.users_id")
-    val id: Long,
     val name: String,
     val surname: String,
     val patronymic: String,
@@ -31,11 +25,12 @@ class Author(
 
     @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "authors")
-    val articles: List<Article>) {
+    val articles: List<Article>,
+
+    id: Long) : AbstractEntity(id){
 
     override fun toString(): String {
-        return "Author(id=$id, " +
-                "name='$name', " +
+        return "Author(name='$name', " +
                 "surname='$surname', " +
                 "patronymic='$patronymic', " +
                 "rating=$rating, " +

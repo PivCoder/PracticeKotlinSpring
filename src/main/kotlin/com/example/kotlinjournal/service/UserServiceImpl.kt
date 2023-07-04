@@ -8,23 +8,23 @@ import java.util.*
 
 @Service
 class UserServiceImpl(private val userRepository: UserRepository) : UserService {
-    override fun addUser(author: Author): Author {
+    override fun add(author: Author): Author {
         return userRepository.save(author)
     }
 
-    override fun getUserById(id: Long): Optional<Author> {
+    override fun getById(id: Long): Optional<Author> {
         return userRepository.findById(id)
     }
 
-    override fun deleteUserById(id: Long) {
+    override fun deleteById(id: Long) {
         userRepository.deleteById(id)
     }
 
-    override fun editUser(author: Author) {
+    override fun edit(author: Author) {
         userRepository.save(author)
     }
 
-    override fun getAllUsers(): List<Author> {
+    override fun getAll(): List<Author> {
         return userRepository.findAll()
     }
 }

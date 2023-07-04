@@ -8,23 +8,23 @@ import java.util.*
 
 @Service
 class PublisherServiceImpl(private val publisherRepository: PublisherRepository) : PublisherService {
-    override fun addPublisher(publisher: Publisher): Publisher {
+    override fun add(publisher: Publisher): Publisher {
         return publisherRepository.save(publisher)
     }
 
-    override fun getPublisherById(id: Long): Optional<Publisher> {
+    override fun getById(id: Long): Optional<Publisher> {
         return publisherRepository.findById(id)
     }
 
-    override fun deletePublisherById(id: Long) {
+    override fun deleteById(id: Long) {
         publisherRepository.deleteById(id)
     }
 
-    override fun editPublisher(publisher: Publisher) {
+    override fun edit(publisher: Publisher) {
         publisherRepository.save(publisher)
     }
 
-    override fun getAllPublishers(): List<Publisher> {
+    override fun getAll(): List<Publisher> {
         return publisherRepository.findAll()
     }
 }

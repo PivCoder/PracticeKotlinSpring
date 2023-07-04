@@ -5,16 +5,10 @@ import com.example.kotlinjournal.model.enums.States
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
-//TODO попробоовать id вынести в абстрактную сущность, generation type Auto
+
 @Entity
 @Table(schema = "project", name = "article")
 class Article(
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-        generator = "article_seq")
-    @SequenceGenerator(name = "article_seq",
-        sequenceName = "project.articles_id")
-    val id: Long,
     val name: String,
     val countPages: Int,
     val countVisits: Int,
@@ -34,11 +28,12 @@ class Article(
         joinColumns = [JoinColumn(name = "articles_id")],
         inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
-    val authors: List<Author>) {
+    val authors: List<Author>,
+
+    id: Long) : AbstractEntity(id) {
 
     override fun toString(): String {
-        return "Article(id=$id, " +
-                "name='$name', " +
+        return "Article(name='$name', " +
                 "countPages=$countPages, " +
                 "countVisits=$countVisits, " +
                 "pictureRef='$pictureRef', " +

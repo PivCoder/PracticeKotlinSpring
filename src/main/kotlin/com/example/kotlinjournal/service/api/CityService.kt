@@ -4,9 +4,10 @@ import com.example.kotlinjournal.model.City
 import java.util.*
 
 interface CityService {
-    fun addCity(city: City): City
-    fun getCityById(id: Long): Optional<City>
-    fun deleteCityById(id: Long)
-    fun editCity(city: City)
-    fun getAllCities(): List<City>
+    fun add(city: City): City
+    fun getById(id: Long): Optional<City>
+    fun getByName(name: String): Optional<City>
+    fun deleteById(id: Long)
+    fun edit(city: City)
+    fun getAll(): List<City>
 }

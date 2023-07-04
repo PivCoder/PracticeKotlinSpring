@@ -4,9 +4,9 @@ import com.example.kotlinjournal.model.Journal
 import java.util.*
 
 interface JournalService {
-    fun addJournal(journal: Journal): Journal
-    fun getJournalById(id: Long): Optional<Journal>
-    fun deleteJournalById(id: Long)
-    fun editJournal(journal: Journal)
-    fun getAllJournals(): List<Journal>
+    fun add(journal: Journal): Journal
+    fun getById(id: Long): Optional<Journal>
+    fun deleteById(id: Long)
+    fun edit(journal: Journal)
+    fun getAll(): List<Journal>
 }

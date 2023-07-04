@@ -4,9 +4,9 @@ import com.example.kotlinjournal.model.Volume
 import java.util.*
 
 interface VolumeService {
-    fun addVolume(volume: Volume): Volume
-    fun getVolumeById(id: Long): Optional<Volume>
-    fun deleteVolumeById(id: Long)
-    fun editVolume(volume: Volume)
-    fun getAllVolumes(): List<Volume>
+    fun add(volume: Volume): Volume
+    fun getById(id: Long): Optional<Volume>
+    fun deleteById(id: Long)
+    fun edit(volume: Volume)
+    fun getAll(): List<Volume>
 }

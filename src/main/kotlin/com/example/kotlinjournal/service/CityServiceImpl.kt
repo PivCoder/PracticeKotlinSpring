@@ -8,23 +8,27 @@ import java.util.*
 
 @Service
 class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
-    override fun addCity(city: City): City {
+    override fun add(city: City): City {
         return cityRepository.save(city)
     }
 
-    override fun getCityById(id: Long): Optional<City> {
+    override fun getById(id: Long): Optional<City> {
         return cityRepository.findById(id)
     }
 
-    override fun deleteCityById(id: Long) {
+    override fun getByName(name: String): Optional<City> {
+        return cityRepository.findByName(name)
+    }
+
+    override fun deleteById(id: Long) {
         cityRepository.deleteById(id)
     }
 
-    override fun editCity(city: City) {
+    override fun edit(city: City) {
         cityRepository.save(city)
     }
 
-    override fun getAllCities(): List<City> {
+    override fun getAll(): List<City> {
         return cityRepository.findAll()
     }
 }

@@ -6,27 +6,26 @@ import com.example.kotlinjournal.service.api.ArticleService
 import org.springframework.stereotype.Service
 import java.util.*
 
-//TODO брать упоминане article в реализации функции. +dto
 @Service
 class ArticleServiceImpl(private val articleRepository: ArticleRepository) : ArticleService {
 
-    override fun addArticle(article: Article): Article {
+    override fun add(article: Article): Article {
         return articleRepository.save(article)
     }
 
-    override fun getArticleById(id: Long): Optional<Article> {
+    override fun getById(id: Long): Optional<Article> {
         return articleRepository.findById(id)
     }
 
-    override fun deleteArticleById(id: Long) {
+    override fun deleteById(id: Long) {
         articleRepository.deleteById(id)
     }
 
-    override fun editArticle(article: Article) {
+    override fun edit(article: Article) {
         articleRepository.save(article)
     }
 
-    override fun getAllArticles(): List<Article> {
+    override fun getAll(): List<Article> {
         return articleRepository.findAll()
     }
 }

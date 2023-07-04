@@ -14,11 +14,16 @@ class CityController(private val cityServiceImpl: CityServiceImpl) {
 
     @GetMapping("/all")
     fun showAllCities(): List<City>{
-        return cityServiceImpl.getAllCities()
+        return cityServiceImpl.getAll()
     }
 
     @GetMapping("/{id}")
     fun showOneCity(@PathVariable id: Long): Optional<City> {
-        return cityServiceImpl.getCityById(id)
+        return cityServiceImpl.getById(id)
+    }
+
+    @GetMapping("/name/{name}")
+    fun showByName(@PathVariable name: String): Optional<City>{
+        return cityServiceImpl.getByName(name);
     }
 }

@@ -8,23 +8,23 @@ import java.util.*
 
 @Service
 class JournalServiceImpl(private val journalRepository: JournalRepository) : JournalService {
-    override fun addJournal(journal: Journal): Journal {
+    override fun add(journal: Journal): Journal {
         return journalRepository.save(journal)
     }
 
-    override fun getJournalById(id: Long): Optional<Journal> {
+    override fun getById(id: Long): Optional<Journal> {
         return journalRepository.findById(id)
     }
 
-    override fun deleteJournalById(id: Long) {
+    override fun deleteById(id: Long) {
         journalRepository.deleteById(id)
     }
 
-    override fun editJournal(journal: Journal) {
+    override fun edit(journal: Journal) {
         journalRepository.save(journal)
     }
 
-    override fun getAllJournals(): List<Journal> {
+    override fun getAll(): List<Journal> {
         return journalRepository.findAll()
     }
 }

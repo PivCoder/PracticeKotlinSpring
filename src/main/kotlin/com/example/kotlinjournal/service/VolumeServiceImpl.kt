@@ -8,23 +8,23 @@ import java.util.*
 
 @Service
 class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : VolumeService {
-    override fun addVolume(volume: Volume): Volume {
+    override fun add(volume: Volume): Volume {
         return volumeRepository.save(volume)
     }
 
-    override fun getVolumeById(id: Long): Optional<Volume> {
+    override fun getById(id: Long): Optional<Volume> {
         return volumeRepository.findById(id)
     }
 
-    override fun deleteVolumeById(id: Long) {
+    override fun deleteById(id: Long) {
         volumeRepository.deleteById(id)
     }
 
-    override fun editVolume(volume: Volume) {
+    override fun edit(volume: Volume) {
         volumeRepository.save(volume)
     }
 
-    override fun getAllVolumes(): List<Volume> {
+    override fun getAll(): List<Volume> {
         return volumeRepository.findAll()
     }
 }
