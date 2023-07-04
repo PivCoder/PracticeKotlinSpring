@@ -1,5 +1,6 @@
 package com.example.kotlinjournal.model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
 
 @Entity
@@ -14,6 +15,7 @@ class Publisher (
     val name: String,
     val ISSN: String,
 
+    @JsonBackReference
     @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     val journals: List<Journal>){
 

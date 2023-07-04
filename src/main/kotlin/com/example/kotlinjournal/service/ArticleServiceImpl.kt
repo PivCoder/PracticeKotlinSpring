@@ -8,7 +8,7 @@ import java.util.*
 
 //TODO брать упоминане article в реализации функции. +dto
 @Service
-class ArticleServiceImplement(private val articleRepository: ArticleRepository) : ArticleService {
+class ArticleServiceImpl(private val articleRepository: ArticleRepository) : ArticleService {
 
     override fun addArticle(article: Article): Article {
         return articleRepository.save(article)

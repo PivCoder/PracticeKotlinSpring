@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class VolumeServiceImplement(private val volumeRepository: VolumeRepository) : VolumeService {
+class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : VolumeService {
     override fun addVolume(volume: Volume): Volume {
         return volumeRepository.save(volume)
     }

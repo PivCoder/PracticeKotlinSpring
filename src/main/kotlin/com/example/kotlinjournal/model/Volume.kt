@@ -1,5 +1,7 @@
 package com.example.kotlinjournal.model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 
 @Entity
@@ -13,10 +15,12 @@ class Volume(
     val id: Long,
     val name: String,
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "journal_id")
     val journal: Journal,
 
+    @JsonBackReference
     @OneToMany(mappedBy = "volume", fetch = FetchType.LAZY)
     val articles: List<Article>) {
 

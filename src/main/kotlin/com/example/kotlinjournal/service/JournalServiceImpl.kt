@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class JournalServiceImplement(private val journalRepository: JournalRepository) : JournalService {
+class JournalServiceImpl(private val journalRepository: JournalRepository) : JournalService {
     override fun addJournal(journal: Journal): Journal {
         return journalRepository.save(journal)
     }

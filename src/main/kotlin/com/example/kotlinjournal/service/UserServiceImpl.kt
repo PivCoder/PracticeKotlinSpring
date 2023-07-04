@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserServiceImplement(private val userRepository: UserRepository) : UserService {
+class UserServiceImpl(private val userRepository: UserRepository) : UserService {
     override fun addUser(author: Author): Author {
         return userRepository.save(author)
     }

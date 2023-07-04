@@ -2,6 +2,8 @@ package com.example.kotlinjournal.model
 
 import com.example.kotlinjournal.model.enums.Categories
 import com.example.kotlinjournal.model.enums.States
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 //TODO попробоовать id вынести в абстрактную сущность, generation type Auto
 @Entity
@@ -20,10 +22,12 @@ class Article(
     val category: Categories,
     val state: States,
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "volume_id")
     val volume: Volume,
 
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "article_author",

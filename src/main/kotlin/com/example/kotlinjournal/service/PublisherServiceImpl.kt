@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class PublisherServiceImplement(private val publisherRepository: PublisherRepository) : PublisherService {
+class PublisherServiceImpl(private val publisherRepository: PublisherRepository) : PublisherService {
     override fun addPublisher(publisher: Publisher): Publisher {
         return publisherRepository.save(publisher)
     }
