@@ -13,7 +13,9 @@ class Article(
     val countPages: Int,
     val countVisits: Int,
     val pictureRef: String,
+    @Enumerated(EnumType.STRING)
     val category: Categories,
+    @Enumerated(EnumType.STRING)
     val state: States,
 
     @JsonManagedReference

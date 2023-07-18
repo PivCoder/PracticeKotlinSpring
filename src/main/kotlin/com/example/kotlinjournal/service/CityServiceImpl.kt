@@ -34,7 +34,6 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
         cityRepository.save(cityDto.toEntity())
     }
 
-    //TODO почитать за MapStruct. Метод .map трансформирует передаваемые значения по условию и возвращает List
     override fun getAll(): List<CityDto> {
         return cityRepository.findAll().map {
             CityDto(it.id, it.name)

@@ -13,6 +13,7 @@ class Author(
     val patronymic: String,
     val rating: Float,
     val pictureRef: String,
+    @Enumerated(EnumType.STRING)
     val userType: UserTypes,
 
     @JsonManagedReference
