@@ -11,9 +11,9 @@ class Organization(
 
     @JsonBackReference
     @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
-    val authors: List<Author>,
+    var authors: MutableList<Author> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long?) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Organization(name='$name')"

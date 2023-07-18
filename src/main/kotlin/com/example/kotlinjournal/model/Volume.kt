@@ -17,9 +17,9 @@ class Volume(
 
     @JsonBackReference
     @OneToMany(mappedBy = "volume", fetch = FetchType.LAZY)
-    val articles: List<Article>,
+    var articles: MutableList<Article> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long?) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Volume(name='$name')"

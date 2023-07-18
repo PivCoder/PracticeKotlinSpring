@@ -28,9 +28,9 @@ class Article(
         joinColumns = [JoinColumn(name = "articles_id")],
         inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
-    val authors: List<Author>,
+    var authors: MutableList<Author> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long?) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Article(name='$name', " +

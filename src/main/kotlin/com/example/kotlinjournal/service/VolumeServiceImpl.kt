@@ -1,5 +1,6 @@
 package com.example.kotlinjournal.service
 
+import com.example.kotlinjournal.dto.VolumeDto
 import com.example.kotlinjournal.model.Volume
 import com.example.kotlinjournal.repositoryes.VolumeRepository
 import com.example.kotlinjournal.service.api.VolumeService
@@ -8,23 +9,35 @@ import java.util.*
 
 @Service
 class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : VolumeService {
-    override fun add(volume: Volume): Volume {
-        return volumeRepository.save(volume)
+    override fun add(volumeDto: VolumeDto): Volume {
+        return volumeRepository.save(volumeDto.toEntity())
     }
 
-    override fun getById(id: Long): Optional<Volume> {
-        return volumeRepository.findById(id)
+    override fun getById(id: Long): Optional<VolumeDto> {
+        return volumeRepository.findById(id).map {
+            VolumeDto(
+                it.id,
+                it.name,
+                it.journal
+            )
+        }
     }
 
     override fun deleteById(id: Long) {
         volumeRepository.deleteById(id)
     }
 
-    override fun edit(volume: Volume) {
-        volumeRepository.save(volume)
+    override fun edit(volumeDto: VolumeDto) {
+        volumeRepository.save(volumeDto.toEntity())
     }
 
-    override fun getAll(): List<Volume> {
-        return volumeRepository.findAll()
+    override fun getAll(): List<VolumeDto> {
+        return volumeRepository.findAll().map {
+            VolumeDto(
+                it.id,
+                it.name,
+                it.journal
+            )
+        }
     }
 }

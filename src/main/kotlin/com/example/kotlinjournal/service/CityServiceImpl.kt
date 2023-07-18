@@ -1,34 +1,43 @@
 package com.example.kotlinjournal.service
 
+import com.example.kotlinjournal.dto.CityDto
 import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.repositoryes.CityRepository
 import com.example.kotlinjournal.service.api.CityService
 import org.springframework.stereotype.Service
 import java.util.*
 
+//TODO почитать за инверсию управления
 @Service
 class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
-    override fun add(city: City): City {
-        return cityRepository.save(city)
+    override fun add(cityDto: CityDto): City {
+        return cityRepository.save(cityDto.toEntity())
     }
 
-    override fun getById(id: Long): Optional<City> {
-        return cityRepository.findById(id)
+    override fun getById(id: Long): Optional<CityDto> {
+        return cityRepository.findById(id).map {
+            CityDto(it.id, it.name)
+        }
     }
 
-    override fun getByName(name: String): Optional<City> {
-        return cityRepository.findByName(name)
+    override fun getByName(name: String): Optional<CityDto> {
+        return cityRepository.findByName(name).map {
+            CityDto(it.id, it.name)
+        }
     }
 
     override fun deleteById(id: Long) {
         cityRepository.deleteById(id)
     }
 
-    override fun edit(city: City) {
-        cityRepository.save(city)
+    override fun edit(cityDto: CityDto) {
+        cityRepository.save(cityDto.toEntity())
     }
 
-    override fun getAll(): List<City> {
-        return cityRepository.findAll()
+    //TODO почитать за MapStruct. Метод .map трансформирует передаваемые значения по условию и возвращает List
+    override fun getAll(): List<CityDto> {
+        return cityRepository.findAll().map {
+            CityDto(it.id, it.name)
+        }
     }
 }

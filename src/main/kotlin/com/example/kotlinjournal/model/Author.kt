@@ -1,5 +1,6 @@
 package com.example.kotlinjournal.model
 
+import com.example.kotlinjournal.model.enums.UserTypes
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
@@ -12,6 +13,7 @@ class Author(
     val patronymic: String,
     val rating: Float,
     val pictureRef: String,
+    val userType: UserTypes,
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
@@ -25,15 +27,16 @@ class Author(
 
     @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "authors")
-    val articles: List<Article>,
+    var articles: MutableList<Article> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id){
+    id: Long?) : AbstractEntity(id){
 
     override fun toString(): String {
         return "Author(name='$name', " +
                 "surname='$surname', " +
                 "patronymic='$patronymic', " +
-                "rating=$rating, " +
-                "pictureRef='$pictureRef')"
+                "rating='$rating', " +
+                "pictureRef='$pictureRef', " +
+                "userType = '$userType')"
     }
 }

@@ -17,9 +17,9 @@ class Journal(
 
     @JsonBackReference
     @OneToMany(mappedBy = "journal", fetch = FetchType.LAZY)
-    val volumes: List<Volume>,
+    var volumes: MutableList<Volume> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long?) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Journal(name='$name')"
