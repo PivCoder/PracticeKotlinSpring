@@ -1,31 +1,34 @@
 package com.example.kotlinjournal.rest
 
 import com.example.kotlinjournal.dto.CityDto
+import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.service.api.CityService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
-//TODO Inject interface а не serviceImpl PathParam посмотреть ApplicationContext почитать подробнее
+//TODO PathParam посмотреть ApplicationContext почитать подробнее
 
 @RestController
 @RequestMapping("/city")
 class CityController(private val cityService: CityService) {
 
-    @GetMapping("/all")
+    @GetMapping("get/all")
     fun showAllCities(): List<CityDto> {
         return cityService.getAll()
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get/{id}")
     fun showOneCity(@PathVariable id: Long): Optional<CityDto> {
         return cityService.getById(id)
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("get/name/{name}")
     fun showByName(@PathVariable name: String): Optional<CityDto> {
         return cityService.getByName(name)
+    }
+
+    @PostMapping("/create")
+    fun createArticle(@RequestBody cityDto: CityDto) : City {
+        return cityService.add(cityDto);
     }
 }

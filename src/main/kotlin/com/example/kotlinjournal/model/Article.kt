@@ -32,7 +32,7 @@ class Article(
     )
     var authors: MutableList<Author> = mutableListOf(),
 
-    id: Long?) : AbstractEntity(id) {
+    id: Long) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Article(name='$name', " +

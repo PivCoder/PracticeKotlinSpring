@@ -11,5 +11,5 @@ abstract class AbstractEntity(
     @Id
     @field:NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long?
+    var id: Long
 )

@@ -19,7 +19,7 @@ class Journal(
     @OneToMany(mappedBy = "journal", fetch = FetchType.LAZY)
     var volumes: MutableList<Volume> = mutableListOf(),
 
-    id: Long?) : AbstractEntity(id) {
+    id: Long) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Journal(name='$name')"

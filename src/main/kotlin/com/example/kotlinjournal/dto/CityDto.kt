@@ -4,7 +4,7 @@ import com.example.kotlinjournal.model.City
 import jakarta.validation.constraints.NotBlank
 
 data class CityDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "City must not be empty")
     val name: String

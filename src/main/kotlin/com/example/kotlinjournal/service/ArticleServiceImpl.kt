@@ -37,7 +37,7 @@ class ArticleServiceImpl(
     }
 
     override fun edit(articleDto: ArticleDto) {
-        articleRepository.save(articleDto.toEntity())
+        articleRepository.findById(articleDto.id).orElseThrow()
     }
 
     override fun getAll(): List<ArticleDto> {

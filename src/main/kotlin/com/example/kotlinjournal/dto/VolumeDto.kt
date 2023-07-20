@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
 data class VolumeDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Volume must not be empty")
     val name: String,

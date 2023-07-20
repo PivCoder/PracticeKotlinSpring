@@ -4,7 +4,7 @@ import com.example.kotlinjournal.model.Organization
 import jakarta.validation.constraints.NotBlank
 
 data class OrganizationDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Organization must not be empty")
     val name: String

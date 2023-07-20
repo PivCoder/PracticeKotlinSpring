@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
 data class JournalDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Name must not be empty")
     val name: String,

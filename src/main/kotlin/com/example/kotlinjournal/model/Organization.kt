@@ -13,7 +13,7 @@ class Organization(
     @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
     var authors: MutableList<Author> = mutableListOf(),
 
-    id: Long?) : AbstractEntity(id) {
+    id: Long) : AbstractEntity(id) {
 
     override fun toString(): String {
         return "Organization(name='$name')"

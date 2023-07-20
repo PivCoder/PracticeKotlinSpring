@@ -30,7 +30,7 @@ class Author(
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "authors")
     var articles: MutableList<Article> = mutableListOf(),
 
-    id: Long?) : AbstractEntity(id){
+    id: Long) : AbstractEntity(id){
 
     override fun toString(): String {
         return "Author(name='$name', " +

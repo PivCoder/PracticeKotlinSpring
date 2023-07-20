@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank
 
 //TODO добавить regex для ISSN
 data class PublisherDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Publisher must not be empty")
     val name: String,

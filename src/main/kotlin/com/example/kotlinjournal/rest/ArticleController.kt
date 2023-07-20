@@ -1,11 +1,9 @@
 package com.example.kotlinjournal.rest
 
 import com.example.kotlinjournal.dto.ArticleDto
+import com.example.kotlinjournal.model.Article
 import com.example.kotlinjournal.service.api.ArticleService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
@@ -19,5 +17,10 @@ class ArticleController(private val articleService: ArticleService) {
     @GetMapping("/{id}")
     fun showOneArticle(@PathVariable id: Long): Optional<ArticleDto> {
         return articleService.getById(id)
+    }
+
+    @PostMapping("/create")
+    fun createArticle(@RequestBody articleDto: ArticleDto) : Article {
+        return articleService.add(articleDto);
     }
 }

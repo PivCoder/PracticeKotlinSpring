@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank
 
 //TODO может задать regex для name, organization, patronymic ?
 data class AuthorDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Name must not be empty")
     val name: String,

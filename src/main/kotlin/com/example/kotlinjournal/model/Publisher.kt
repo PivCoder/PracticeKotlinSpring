@@ -14,7 +14,7 @@ class Publisher(
     @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     var journals: MutableList<Journal> = mutableListOf(),
 
-    id: Long?) : AbstractEntity(id){
+    id: Long) : AbstractEntity(id){
 
     override fun toString(): String {
         return "Publisher(name='$name', ISSN='$ISSN')"

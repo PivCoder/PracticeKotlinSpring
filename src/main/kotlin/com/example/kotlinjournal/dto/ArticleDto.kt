@@ -7,7 +7,7 @@ import com.example.kotlinjournal.model.enums.States
 import jakarta.validation.constraints.NotBlank
 
 data class ArticleDto(
-    var id: Long?,
+    var id: Long,
 
     @field:NotBlank(message = "Name must not be empty")
     val name: String,
