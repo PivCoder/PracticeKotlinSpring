@@ -1,20 +1,21 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.AuthorDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.Author
-import com.example.kotlinjournal.repositoryes.UserRepository
+import com.example.kotlinjournal.repositoryes.AuthorRepository
 import com.example.kotlinjournal.service.api.AuthorService
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class AuthorServiceImpl(private val userRepository: UserRepository) : AuthorService {
+class AuthorServiceImpl(private val authorRepository: AuthorRepository) : AuthorService {
     override fun add(authorDto: AuthorDto): Author {
-        return userRepository.save(authorDto.toEntity())
+        return authorRepository.save(authorDto.toEntity())
     }
 
     override fun getById(id: Long): Optional<AuthorDto> {
-        return userRepository.findById(id).map {
+        return authorRepository.findById(id).map {
             AuthorDto(
                 it.id,
                 it.name,
@@ -30,15 +31,18 @@ class AuthorServiceImpl(private val userRepository: UserRepository) : AuthorServ
     }
 
     override fun deleteById(id: Long) {
-        userRepository.deleteById(id)
+        authorRepository.deleteById(id)
     }
 
-    override fun edit(authorDto: AuthorDto) {
-        userRepository.save(authorDto.toEntity())
+    override fun edit(authorDto: AuthorDto): Author {
+        authorRepository.findById(authorDto.id)
+            .orElseThrow{throw ElementNotFoundException("Author with id " + authorDto.id + " not found!") }
+
+        return authorRepository.save(authorDto.toEntity())
     }
 
     override fun getAll(): List<AuthorDto> {
-        return userRepository.findAll().map {
+        return authorRepository.findAll().map {
             AuthorDto(
                 it.id,
                 it.name,

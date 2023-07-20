@@ -1,6 +1,7 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.OrganizationDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.Organization
 import com.example.kotlinjournal.repositoryes.OrganizationRepository
 import com.example.kotlinjournal.service.api.OrganizationService
@@ -26,8 +27,11 @@ class OrganizationServiceImpl(private val organizationRepository: OrganizationRe
         organizationRepository.deleteById(id)
     }
 
-    override fun edit(organizationDto: OrganizationDto) {
-        organizationRepository.save(organizationDto.toEntity())
+    override fun edit(organizationDto: OrganizationDto): Organization {
+        organizationRepository.findById(organizationDto.id)
+            .orElseThrow{throw ElementNotFoundException("Organization with id " + organizationDto.id + " not found!") }
+
+        return organizationRepository.save(organizationDto.toEntity())
     }
 
     override fun getAll(): List<OrganizationDto> {

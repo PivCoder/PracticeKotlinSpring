@@ -1,6 +1,7 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.CityDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.repositoryes.CityRepository
 import com.example.kotlinjournal.service.api.CityService
@@ -30,8 +31,11 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
         cityRepository.deleteById(id)
     }
 
-    override fun edit(cityDto: CityDto) {
-        cityRepository.save(cityDto.toEntity())
+    override fun edit(cityDto: CityDto): City {
+        cityRepository.findById(cityDto.id)
+            .orElseThrow{throw ElementNotFoundException("City with id " + cityDto.id + " not found!") }
+
+        return cityRepository.save(cityDto.toEntity())
     }
 
     override fun getAll(): List<CityDto> {

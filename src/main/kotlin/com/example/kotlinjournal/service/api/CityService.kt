@@ -9,6 +9,6 @@ interface CityService {
     fun getById(id: Long): Optional<CityDto>
     fun getByName(name: String): Optional<CityDto>
     fun deleteById(id: Long)
-    fun edit(cityDto: CityDto)
+    fun edit(cityDto: CityDto): City
     fun getAll(): List<CityDto>
 }

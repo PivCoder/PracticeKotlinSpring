@@ -1,6 +1,7 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.PublisherDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.Publisher
 import com.example.kotlinjournal.repositoryes.PublisherRepository
 import com.example.kotlinjournal.service.api.PublisherService
@@ -27,8 +28,11 @@ class PublisherServiceImpl(private val publisherRepository: PublisherRepository)
         publisherRepository.deleteById(id)
     }
 
-    override fun edit(publisherDto: PublisherDto) {
-        publisherRepository.save(publisherDto.toEntity())
+    override fun edit(publisherDto: PublisherDto): Publisher {
+        publisherRepository.findById(publisherDto.id)
+            .orElseThrow{throw ElementNotFoundException("Publisher with id " + publisherDto.id + " not found!") }
+
+        return publisherRepository.save(publisherDto.toEntity())
     }
 
     override fun getAll(): List<PublisherDto> {

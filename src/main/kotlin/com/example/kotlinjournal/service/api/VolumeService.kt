@@ -8,6 +8,6 @@ interface VolumeService {
     fun add(volumeDto: VolumeDto): Volume
     fun getById(id: Long): Optional<VolumeDto>
     fun deleteById(id: Long)
-    fun edit(volumeDto: VolumeDto)
+    fun edit(volumeDto: VolumeDto): Volume
     fun getAll(): List<VolumeDto>
 }

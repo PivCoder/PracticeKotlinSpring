@@ -8,6 +8,6 @@ interface AuthorService {
     fun add(authorDto: AuthorDto): Author
     fun getById(id: Long): Optional<AuthorDto>
     fun deleteById(id: Long)
-    fun edit(authorDto: AuthorDto)
+    fun edit(authorDto: AuthorDto): Author
     fun getAll(): List<AuthorDto>
 }

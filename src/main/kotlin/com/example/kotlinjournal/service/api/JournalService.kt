@@ -8,6 +8,6 @@ interface JournalService {
     fun add(journalDto: JournalDto): Journal
     fun getById(id: Long): Optional<JournalDto>
     fun deleteById(id: Long)
-    fun edit(journalDto: JournalDto)
+    fun edit(journalDto: JournalDto): Journal
     fun getAll(): List<JournalDto>
 }

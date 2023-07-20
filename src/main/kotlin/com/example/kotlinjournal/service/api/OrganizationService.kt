@@ -8,6 +8,6 @@ interface OrganizationService {
     fun add(organizationDto: OrganizationDto): Organization
     fun getById(id: Long): Optional<OrganizationDto>
     fun deleteById(id: Long)
-    fun edit(organizationDto: OrganizationDto)
+    fun edit(organizationDto: OrganizationDto): Organization
     fun getAll(): List<OrganizationDto>
 }

@@ -1,6 +1,7 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.JournalDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.Journal
 import com.example.kotlinjournal.repositoryes.JournalRepository
 import com.example.kotlinjournal.service.api.JournalService
@@ -27,8 +28,11 @@ class JournalServiceImpl(private val journalRepository: JournalRepository) : Jou
         journalRepository.deleteById(id)
     }
 
-    override fun edit(journalDto: JournalDto) {
-        journalRepository.save(journalDto.toEntity())
+    override fun edit(journalDto: JournalDto): Journal {
+        journalRepository.findById(journalDto.id)
+            .orElseThrow{throw ElementNotFoundException("Journal with id " + journalDto.id + " not found!") }
+
+        return journalRepository.save(journalDto.toEntity())
     }
 
     override fun getAll(): List<JournalDto> {

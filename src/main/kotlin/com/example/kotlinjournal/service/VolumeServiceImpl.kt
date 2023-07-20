@@ -1,6 +1,7 @@
 package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.VolumeDto
+import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.model.Volume
 import com.example.kotlinjournal.repositoryes.VolumeRepository
 import com.example.kotlinjournal.service.api.VolumeService
@@ -27,8 +28,11 @@ class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : Volume
         volumeRepository.deleteById(id)
     }
 
-    override fun edit(volumeDto: VolumeDto) {
-        volumeRepository.save(volumeDto.toEntity())
+    override fun edit(volumeDto: VolumeDto): Volume {
+        volumeRepository.findById(volumeDto.id)
+            .orElseThrow{throw ElementNotFoundException("Volume with id " + volumeDto.id + " not found!") }
+
+        return volumeRepository.save(volumeDto.toEntity())
     }
 
     override fun getAll(): List<VolumeDto> {

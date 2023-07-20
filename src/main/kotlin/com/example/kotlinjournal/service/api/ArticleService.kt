@@ -8,6 +8,6 @@ interface ArticleService {
     fun add(articleDto: ArticleDto): Article
     fun getById(id: Long): Optional<ArticleDto>
     fun deleteById(id: Long)
-    fun edit(articleDto: ArticleDto)
+    fun edit(articleDto: ArticleDto): Article
     fun getAll(): List<ArticleDto>
 }
