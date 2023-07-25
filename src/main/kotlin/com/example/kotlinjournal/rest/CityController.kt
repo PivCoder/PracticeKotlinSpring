@@ -6,14 +6,12 @@ import com.example.kotlinjournal.service.api.CityService
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
-//TODO PathParam посмотреть ApplicationContext почитать подробнее
-
 @RestController
 @RequestMapping("/city")
 class CityController(private val cityService: CityService) {
 
     @GetMapping("get/all")
-    fun showAllCities(): List<CityDto> {
+    fun showAll(): List<CityDto> {
         return cityService.getAll()
     }
 
@@ -28,7 +26,7 @@ class CityController(private val cityService: CityService) {
     }
 
     @PostMapping("/create")
-    fun createArticle(@RequestBody cityDto: CityDto) : City {
+    fun create(@RequestBody cityDto: CityDto) : City {
         return cityService.add(cityDto);
     }
 }

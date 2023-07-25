@@ -30,7 +30,9 @@ class JournalServiceImpl(private val journalRepository: JournalRepository) : Jou
 
     override fun edit(journalDto: JournalDto): Journal {
         journalRepository.findById(journalDto.id)
-            .orElseThrow{throw ElementNotFoundException("Journal with id " + journalDto.id + " not found!") }
+            .orElseThrow{
+                throw ElementNotFoundException("Journal with id " + journalDto.id + " not found!")
+            }
 
         return journalRepository.save(journalDto.toEntity())
     }

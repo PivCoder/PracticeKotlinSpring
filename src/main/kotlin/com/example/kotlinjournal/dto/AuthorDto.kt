@@ -6,7 +6,6 @@ import com.example.kotlinjournal.model.Organization
 import com.example.kotlinjournal.model.enums.UserTypes
 import jakarta.validation.constraints.NotBlank
 
-//TODO может задать regex для name, organization, patronymic ?
 data class AuthorDto(
     var id: Long,
 

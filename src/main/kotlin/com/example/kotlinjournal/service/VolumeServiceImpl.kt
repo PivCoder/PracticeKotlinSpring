@@ -30,7 +30,9 @@ class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : Volume
 
     override fun edit(volumeDto: VolumeDto): Volume {
         volumeRepository.findById(volumeDto.id)
-            .orElseThrow{throw ElementNotFoundException("Volume with id " + volumeDto.id + " not found!") }
+            .orElseThrow{
+                throw ElementNotFoundException("Volume with id " + volumeDto.id + " not found!")
+            }
 
         return volumeRepository.save(volumeDto.toEntity())
     }

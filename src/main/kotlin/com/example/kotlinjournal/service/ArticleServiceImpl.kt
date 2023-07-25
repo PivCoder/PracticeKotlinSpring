@@ -8,7 +8,6 @@ import com.example.kotlinjournal.service.api.ArticleService
 import org.springframework.stereotype.Service
 import java.util.*
 
-//TODO А что собственно делать с тестированием ? Почитать за TestContainers & SpringBootTest
 @Service
 class ArticleServiceImpl(
     private val articleRepository: ArticleRepository) : ArticleService {
@@ -38,7 +37,9 @@ class ArticleServiceImpl(
 
     override fun edit(articleDto: ArticleDto): Article {
         articleRepository.findById(articleDto.id)
-            .orElseThrow{throw ElementNotFoundException("Article with id " + articleDto.id + " not found!")}
+            .orElseThrow{
+                throw ElementNotFoundException("Article with id " + articleDto.id + " not found!")
+            }
 
         return articleRepository.save(articleDto.toEntity())
     }

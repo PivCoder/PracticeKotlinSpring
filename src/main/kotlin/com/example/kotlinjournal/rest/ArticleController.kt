@@ -10,17 +10,27 @@ import java.util.*
 @RequestMapping("/article")
 class ArticleController(private val articleService: ArticleService) {
     @GetMapping("/all")
-    fun showAllArticles(): List<ArticleDto> {
+    fun showAll(): List<ArticleDto> {
         return articleService.getAll()
     }
 
     @GetMapping("/{id}")
-    fun showOneArticle(@PathVariable id: Long): Optional<ArticleDto> {
+    fun showOne(@PathVariable id: Long): Optional<ArticleDto> {
         return articleService.getById(id)
     }
 
     @PostMapping("/create")
-    fun createArticle(@RequestBody articleDto: ArticleDto) : Article {
+    fun create(@RequestBody articleDto: ArticleDto) : Article {
         return articleService.add(articleDto);
+    }
+
+    @PutMapping("/update")
+    fun update(@RequestBody articleDto: ArticleDto) : Article{
+        return articleService.edit(articleDto)
+    }
+
+    @DeleteMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long){
+        articleService.deleteById(id)
     }
 }

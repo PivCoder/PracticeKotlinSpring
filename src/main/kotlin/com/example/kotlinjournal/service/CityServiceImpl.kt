@@ -33,7 +33,9 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
 
     override fun edit(cityDto: CityDto): City {
         cityRepository.findById(cityDto.id)
-            .orElseThrow{throw ElementNotFoundException("City with id " + cityDto.id + " not found!") }
+            .orElseThrow{
+                throw ElementNotFoundException("City with id " + cityDto.id + " not found!")
+            }
 
         return cityRepository.save(cityDto.toEntity())
     }

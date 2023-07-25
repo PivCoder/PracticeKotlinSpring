@@ -27,7 +27,7 @@ class Article(
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "article_author",
-        joinColumns = [JoinColumn(name = "articles_id")],
+        joinColumns = [JoinColumn(name = "article_id")],
         inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
     var authors: MutableList<Author> = mutableListOf(),

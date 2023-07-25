@@ -30,7 +30,9 @@ class PublisherServiceImpl(private val publisherRepository: PublisherRepository)
 
     override fun edit(publisherDto: PublisherDto): Publisher {
         publisherRepository.findById(publisherDto.id)
-            .orElseThrow{throw ElementNotFoundException("Publisher with id " + publisherDto.id + " not found!") }
+            .orElseThrow{
+                throw ElementNotFoundException("Publisher with id " + publisherDto.id + " not found!")
+            }
 
         return publisherRepository.save(publisherDto.toEntity())
     }
