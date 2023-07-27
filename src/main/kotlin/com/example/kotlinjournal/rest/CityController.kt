@@ -10,22 +10,22 @@ import java.util.*
 @RequestMapping("/city")
 class CityController(private val cityService: CityService) {
 
-    @GetMapping("get/all")
+    @GetMapping
     fun showAll(): List<CityDto> {
         return cityService.getAll()
     }
 
-    @GetMapping("get/{id}")
+    @GetMapping("/{id}")
     fun showOneCity(@PathVariable id: Long): Optional<CityDto> {
         return cityService.getById(id)
     }
 
-    @GetMapping("get/name/{name}")
+    @GetMapping("/name/{name}")
     fun showByName(@PathVariable name: String): Optional<CityDto> {
         return cityService.getByName(name)
     }
 
-    @PostMapping("/create")
+    @PostMapping
     fun create(@RequestBody cityDto: CityDto) : City {
         return cityService.add(cityDto);
     }

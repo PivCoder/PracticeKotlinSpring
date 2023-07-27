@@ -9,7 +9,7 @@ import java.util.*
 @RestController
 @RequestMapping("/article")
 class ArticleController(private val articleService: ArticleService) {
-    @GetMapping("/all")
+    @GetMapping
     fun showAll(): List<ArticleDto> {
         return articleService.getAll()
     }
@@ -19,17 +19,17 @@ class ArticleController(private val articleService: ArticleService) {
         return articleService.getById(id)
     }
 
-    @PostMapping("/create")
+    @PostMapping
     fun create(@RequestBody articleDto: ArticleDto) : Article {
         return articleService.add(articleDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     fun update(@RequestBody articleDto: ArticleDto) : Article{
         return articleService.edit(articleDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         articleService.deleteById(id)
     }

@@ -29,7 +29,7 @@ class JournalController(private val journalService: JournalService) {
         return journalService.edit(journalDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         journalService.deleteById(id)
     }

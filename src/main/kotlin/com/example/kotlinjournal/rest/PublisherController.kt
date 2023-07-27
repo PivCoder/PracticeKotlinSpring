@@ -29,7 +29,7 @@ class PublisherController(private val publisherService: PublisherService) {
         return publisherService.edit(publisherDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         publisherService.deleteById(id)
     }

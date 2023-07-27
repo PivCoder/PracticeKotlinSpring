@@ -31,7 +31,7 @@ class AuthorController(private val authorService: AuthorService) {
         return authorService.edit(authorDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         authorService.deleteById(id)
     }

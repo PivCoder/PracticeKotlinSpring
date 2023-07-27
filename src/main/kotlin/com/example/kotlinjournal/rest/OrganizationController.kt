@@ -31,7 +31,7 @@ class OrganizationController(private val organizationService: OrganizationServic
         return organizationService.edit(organizationDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         organizationService.deleteById(id)
     }

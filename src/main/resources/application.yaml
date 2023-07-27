@@ -23,6 +23,7 @@ spring:
         show_sql: true
         format_sql: true
         default_schema: "project"
+# не выдавать наружу entity
   jackson:
     serialization:
       fail-on-empty-beans: false

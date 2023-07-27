@@ -33,6 +33,7 @@ noArg {
 }
 
 dependencies {
+    //на маке не запустится, грустно(((
     implementation(files("C://Users/Admin/Downloads/kotlin-compiler-embeddable-1.8.22.jar"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mustache")

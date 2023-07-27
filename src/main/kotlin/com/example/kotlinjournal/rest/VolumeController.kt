@@ -31,7 +31,7 @@ class VolumeController(private val volumeService: VolumeService) {
         return volumeService.edit(volumeDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         volumeService.deleteById(id)
     }
