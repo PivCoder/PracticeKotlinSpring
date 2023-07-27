@@ -1,8 +1,6 @@
 package com.example.kotlinjournal.rest
 
-import com.example.kotlinjournal.dto.OrganizationDto
 import com.example.kotlinjournal.dto.PublisherDto
-import com.example.kotlinjournal.model.Organization
 import com.example.kotlinjournal.model.Publisher
 import com.example.kotlinjournal.service.api.PublisherService
 import org.springframework.web.bind.annotation.*

@@ -4,7 +4,10 @@ import com.example.kotlinjournal.dto.CityDto
 import com.example.kotlinjournal.service.api.CityService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,23 +20,10 @@ import org.testcontainers.junit.jupiter.Testcontainers
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 @AutoConfigureMockMvc
 @Testcontainers
-internal class CityControllerTest {
-
-    companion object {
-        @Container
-        private val postgreSQLContainer = PostgreSQLContainer("postgres:14")
-            .withDatabaseName("Journal")
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun properties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)
-            registry.add("spring.datasource.password", postgreSQLContainer::getPassword)
-            registry.add("spring.datasource.username", postgreSQLContainer::getUsername)
-        }
-    }
+internal class CityControllerTest : DockerEnvocker() {
 
     //TODO Скорее всего конфликт зависимостей
     @Suppress("SpringJavaInjectionPointsAutowiringInspection")
@@ -44,17 +34,50 @@ internal class CityControllerTest {
     private lateinit var cityService: CityService
 
     @Test
-    fun createCity() {
+    @Order(1)
+    fun create() {
         val testCityDto = CityDto(
-            id = 4,
+            id = 1,
             name = "Qatar"
         )
 
         cityService.add(testCityDto)
 
-        val retrievedCity = cityService.getById(4)
+        val retrievedCity = cityService.getById(1)
 
         assertNotNull(retrievedCity)
         assertEquals("Qatar", retrievedCity.get().name)
+        println("ОТРАБОТАЛО СОЗДАНИЕ")
+    }
+
+    @Test
+    @Order(2)
+    fun read(){
+        val retrievedCityByName = cityService.getByName("Qatar")
+        println(retrievedCityByName)
+        val retrievedCityById = cityService.getById(1)
+        println(retrievedCityById)
+        println("ОТРАБОТАЛО ЧТЕНИЕ")
+    }
+
+    @Test
+    @Order(3)
+    fun update(){
+        val testCityDto = CityDto(
+            id = 1,
+            name = "Morocco"
+        )
+
+        cityService.edit(testCityDto)
+
+        println(testCityDto)
+        println("ОТРАБОТАЛО ИЗМЕНЕНИЕ")
+    }
+
+    @Test
+    @Order(4)
+    fun delete(){
+        cityService.deleteById(1)
+        println("ОТРАБОТАЛО УДАЛЕНИЕ")
     }
 }

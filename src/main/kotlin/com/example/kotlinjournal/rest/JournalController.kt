@@ -1,8 +1,6 @@
 package com.example.kotlinjournal.rest
 
-import com.example.kotlinjournal.dto.AuthorDto
 import com.example.kotlinjournal.dto.JournalDto
-import com.example.kotlinjournal.model.Author
 import com.example.kotlinjournal.model.Journal
 import com.example.kotlinjournal.service.api.JournalService
 import org.springframework.web.bind.annotation.*

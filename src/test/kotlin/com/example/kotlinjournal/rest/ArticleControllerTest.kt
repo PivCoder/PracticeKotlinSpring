@@ -10,6 +10,7 @@ import com.example.kotlinjournal.service.api.ArticleService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
+import org.mockito.Mock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -20,16 +21,16 @@ internal class ArticleControllerTest {
     @Autowired
     private lateinit var articleService: ArticleService
 
-    @MockBean
+    @Mock
     private lateinit var volume: Volume
 
-    @MockBean
+    @Mock
     private lateinit var authors: MutableList<Author>
 
     @Test
-    fun createArticle() {
+    fun create() {
         val articleDto = ArticleDto(
-            id = 5,
+            id = 1,
             name = "Test article 5",
             state = States.UNDER_CONSIDERATION,
             countVisits = 0,
