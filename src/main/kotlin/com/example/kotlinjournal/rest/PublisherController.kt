@@ -1,7 +1,6 @@
 package com.example.kotlinjournal.rest
 
 import com.example.kotlinjournal.dto.PublisherDto
-import com.example.kotlinjournal.model.Publisher
 import com.example.kotlinjournal.service.api.PublisherService
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -9,7 +8,7 @@ import java.util.*
 @RestController
 @RequestMapping("/publisher")
 class PublisherController(private val publisherService: PublisherService) {
-    @GetMapping("/all")
+    @GetMapping
     fun showAll(): List<PublisherDto> {
         return publisherService.getAll()
     }
@@ -19,17 +18,17 @@ class PublisherController(private val publisherService: PublisherService) {
         return publisherService.getById(id)
     }
 
-    @PostMapping("/create")
-    fun create(@RequestBody publisherDto: PublisherDto) : Publisher {
-        return publisherService.add(publisherDto);
+    @PostMapping
+    fun create(@RequestBody publisherDto: PublisherDto) : PublisherDto {
+        return publisherService.add(publisherDto)
     }
 
-    @PutMapping("/update")
-    fun update(@RequestBody publisherDto: PublisherDto) : Publisher {
+    @PutMapping
+    fun update(@RequestBody publisherDto: PublisherDto) : PublisherDto {
         return publisherService.edit(publisherDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         publisherService.deleteById(id)
     }

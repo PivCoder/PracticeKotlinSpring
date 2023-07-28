@@ -1,7 +1,6 @@
 package com.example.kotlinjournal.rest
 
 import com.example.kotlinjournal.dto.ArticleDto
-import com.example.kotlinjournal.model.Article
 import com.example.kotlinjournal.model.Author
 import com.example.kotlinjournal.model.Volume
 import com.example.kotlinjournal.model.enums.Categories
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 
 @SpringBootTest
 internal class ArticleControllerTest {
@@ -34,7 +32,7 @@ internal class ArticleControllerTest {
             name = "Test article 5",
             state = States.UNDER_CONSIDERATION,
             countVisits = 0,
-            countPage = 0,
+            countPages = 0,
             volume = volume,
             pictureRef = "",
             category = Categories.CHEMISTRY,

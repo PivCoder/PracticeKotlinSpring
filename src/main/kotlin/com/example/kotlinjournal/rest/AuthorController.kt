@@ -1,9 +1,6 @@
 package com.example.kotlinjournal.rest
 
-import com.example.kotlinjournal.dto.ArticleDto
 import com.example.kotlinjournal.dto.AuthorDto
-import com.example.kotlinjournal.model.Article
-import com.example.kotlinjournal.model.Author
 import com.example.kotlinjournal.service.api.AuthorService
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -11,7 +8,7 @@ import java.util.*
 @RestController
 @RequestMapping("/author")
 class AuthorController(private val authorService: AuthorService) {
-    @GetMapping("/all")
+    @GetMapping
     fun showAll(): List<AuthorDto> {
         return authorService.getAll()
     }
@@ -21,17 +18,17 @@ class AuthorController(private val authorService: AuthorService) {
         return authorService.getById(id)
     }
 
-    @PostMapping("/create")
-    fun create(@RequestBody authorDto: AuthorDto) : Author {
+    @PostMapping
+    fun create(@RequestBody authorDto: AuthorDto) : AuthorDto {
         return authorService.add(authorDto);
     }
 
-    @PutMapping("/update")
-    fun update(@RequestBody authorDto: AuthorDto) : Author {
+    @PutMapping
+    fun update(@RequestBody authorDto: AuthorDto) : AuthorDto {
         return authorService.edit(authorDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         authorService.deleteById(id)
     }

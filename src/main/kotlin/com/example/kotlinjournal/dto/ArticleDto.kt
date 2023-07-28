@@ -16,7 +16,7 @@ data class ArticleDto(
     val pictureRef: String,
     val category: Categories,
     val volume: Volume,
-    val countPage: Int,
+    val countPages: Int,
     val countVisits: Int,
     val state: States
 ) {
@@ -27,6 +27,6 @@ data class ArticleDto(
         category = category,
         volume = volume,
         state = state,
-        countPages = countPage,
+        countPages = countPages,
         countVisits = countVisits)
 }

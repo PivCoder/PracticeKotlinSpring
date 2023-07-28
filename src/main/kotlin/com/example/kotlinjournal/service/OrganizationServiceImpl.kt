@@ -10,8 +10,8 @@ import java.util.*
 
 @Service
 class OrganizationServiceImpl(private val organizationRepository: OrganizationRepository) : OrganizationService{
-    override fun add(organizationDto: OrganizationDto): Organization {
-        return organizationRepository.save(organizationDto.toEntity())
+    override fun add(organizationDto: OrganizationDto): OrganizationDto {
+        return organizationRepository.save(organizationDto)
     }
 
     override fun getById(id: Long): Optional<OrganizationDto> {
@@ -27,13 +27,13 @@ class OrganizationServiceImpl(private val organizationRepository: OrganizationRe
         organizationRepository.deleteById(id)
     }
 
-    override fun edit(organizationDto: OrganizationDto): Organization {
+    override fun edit(organizationDto: OrganizationDto): OrganizationDto {
         organizationRepository.findById(organizationDto.id)
             .orElseThrow{
                 throw ElementNotFoundException("Organization with id " + organizationDto.id + " not found!")
             }
 
-        return organizationRepository.save(organizationDto.toEntity())
+        return organizationRepository.save(organizationDto)
     }
 
     override fun getAll(): List<OrganizationDto> {

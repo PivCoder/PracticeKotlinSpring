@@ -1,9 +1,6 @@
 package com.example.kotlinjournal.rest
 
-import com.example.kotlinjournal.dto.PublisherDto
 import com.example.kotlinjournal.dto.VolumeDto
-import com.example.kotlinjournal.model.Publisher
-import com.example.kotlinjournal.model.Volume
 import com.example.kotlinjournal.service.api.VolumeService
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -11,7 +8,7 @@ import java.util.*
 @RestController
 @RequestMapping("/volume")
 class VolumeController(private val volumeService: VolumeService) {
-    @GetMapping("/all")
+    @GetMapping
     fun showAll(): List<VolumeDto> {
         return volumeService.getAll()
     }
@@ -21,17 +18,17 @@ class VolumeController(private val volumeService: VolumeService) {
         return volumeService.getById(id)
     }
 
-    @PostMapping("/create")
-    fun create(@RequestBody volumeDto: VolumeDto) : Volume {
-        return volumeService.add(volumeDto);
+    @PostMapping
+    fun create(@RequestBody volumeDto: VolumeDto) : VolumeDto {
+        return volumeService.add(volumeDto)
     }
 
-    @PutMapping("/update")
-    fun update(@RequestBody volumeDto: VolumeDto) : Volume {
+    @PutMapping
+    fun update(@RequestBody volumeDto: VolumeDto) : VolumeDto {
         return volumeService.edit(volumeDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         volumeService.deleteById(id)
     }

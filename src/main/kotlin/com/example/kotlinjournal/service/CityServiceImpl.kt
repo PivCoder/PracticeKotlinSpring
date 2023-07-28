@@ -2,17 +2,15 @@ package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.CityDto
 import com.example.kotlinjournal.exception.ElementNotFoundException
-import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.repositoryes.CityRepository
 import com.example.kotlinjournal.service.api.CityService
 import org.springframework.stereotype.Service
 import java.util.*
 
-//TODO почитать за инверсию управления
 @Service
 class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
-    override fun add(cityDto: CityDto): City {
-        return cityRepository.save(cityDto.toEntity())
+    override fun add(cityDto: CityDto): CityDto {
+        return cityRepository.save(cityDto)
     }
 
     override fun getById(id: Long): Optional<CityDto> {
@@ -31,13 +29,13 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
         cityRepository.deleteById(id)
     }
 
-    override fun edit(cityDto: CityDto): City {
+    override fun edit(cityDto: CityDto): CityDto {
         cityRepository.findById(cityDto.id)
             .orElseThrow{
                 throw ElementNotFoundException("City with id " + cityDto.id + " not found!")
             }
 
-        return cityRepository.save(cityDto.toEntity())
+        return cityRepository.save(cityDto)
     }
 
     override fun getAll(): List<CityDto> {

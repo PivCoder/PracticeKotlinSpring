@@ -1,9 +1,6 @@
 package com.example.kotlinjournal.rest
 
-import com.example.kotlinjournal.dto.JournalDto
 import com.example.kotlinjournal.dto.OrganizationDto
-import com.example.kotlinjournal.model.Journal
-import com.example.kotlinjournal.model.Organization
 import com.example.kotlinjournal.service.api.OrganizationService
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -11,7 +8,7 @@ import java.util.*
 @RestController
 @RequestMapping("/organization")
 class OrganizationController(private val organizationService: OrganizationService) {
-    @GetMapping("/all")
+    @GetMapping
     fun showAll(): List<OrganizationDto> {
         return organizationService.getAll()
     }
@@ -21,17 +18,17 @@ class OrganizationController(private val organizationService: OrganizationServic
         return organizationService.getById(id)
     }
 
-    @PostMapping("/create")
-    fun create(@RequestBody organizationDto: OrganizationDto) : Organization {
-        return organizationService.add(organizationDto);
+    @PostMapping
+    fun create(@RequestBody organizationDto: OrganizationDto) : OrganizationDto {
+        return organizationService.add(organizationDto)
     }
 
-    @PutMapping("/update")
-    fun update(@RequestBody organizationDto: OrganizationDto) : Organization {
+    @PutMapping
+    fun update(@RequestBody organizationDto: OrganizationDto) : OrganizationDto {
         return organizationService.edit(organizationDto)
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long){
         organizationService.deleteById(id)
     }

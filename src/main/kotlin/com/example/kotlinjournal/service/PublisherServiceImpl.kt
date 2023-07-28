@@ -10,8 +10,8 @@ import java.util.*
 
 @Service
 class PublisherServiceImpl(private val publisherRepository: PublisherRepository) : PublisherService {
-    override fun add(publisherDto: PublisherDto): Publisher {
-        return publisherRepository.save(publisherDto.toEntity())
+    override fun add(publisherDto: PublisherDto): PublisherDto {
+        return publisherRepository.save(publisherDto)
     }
 
     override fun getById(id: Long): Optional<PublisherDto> {
@@ -28,13 +28,13 @@ class PublisherServiceImpl(private val publisherRepository: PublisherRepository)
         publisherRepository.deleteById(id)
     }
 
-    override fun edit(publisherDto: PublisherDto): Publisher {
+    override fun edit(publisherDto: PublisherDto): PublisherDto {
         publisherRepository.findById(publisherDto.id)
             .orElseThrow{
                 throw ElementNotFoundException("Publisher with id " + publisherDto.id + " not found!")
             }
 
-        return publisherRepository.save(publisherDto.toEntity())
+        return publisherRepository.save(publisherDto)
     }
 
     override fun getAll(): List<PublisherDto> {

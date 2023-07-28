@@ -1,6 +1,6 @@
 package com.example.kotlinjournal.repositoryes
 
-import com.example.kotlinjournal.model.Article
+import com.example.kotlinjournal.dto.ArticleDto
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ArticleRepository : JpaRepository<Article, Long>
+interface ArticleRepository : JpaRepository<ArticleDto, Long>

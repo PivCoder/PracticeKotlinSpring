@@ -2,7 +2,6 @@ package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.AuthorDto
 import com.example.kotlinjournal.exception.ElementNotFoundException
-import com.example.kotlinjournal.model.Author
 import com.example.kotlinjournal.repositoryes.AuthorRepository
 import com.example.kotlinjournal.service.api.AuthorService
 import org.springframework.stereotype.Service
@@ -10,8 +9,8 @@ import java.util.*
 
 @Service
 class AuthorServiceImpl(private val authorRepository: AuthorRepository) : AuthorService {
-    override fun add(authorDto: AuthorDto): Author {
-        return authorRepository.save(authorDto.toEntity())
+    override fun add(authorDto: AuthorDto): AuthorDto {
+        return authorRepository.save(authorDto)
     }
 
     override fun getById(id: Long): Optional<AuthorDto> {
@@ -34,13 +33,13 @@ class AuthorServiceImpl(private val authorRepository: AuthorRepository) : Author
         authorRepository.deleteById(id)
     }
 
-    override fun edit(authorDto: AuthorDto): Author {
+    override fun edit(authorDto: AuthorDto): AuthorDto {
         authorRepository.findById(authorDto.id)
             .orElseThrow{
                 throw ElementNotFoundException("Author with id " + authorDto.id + " not found!")
             }
 
-        return authorRepository.save(authorDto.toEntity())
+        return authorRepository.save(authorDto)
     }
 
     override fun getAll(): List<AuthorDto> {

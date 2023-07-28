@@ -5,9 +5,9 @@ import com.example.kotlinjournal.model.Author
 import java.util.*
 
 interface AuthorService {
-    fun add(authorDto: AuthorDto): Author
+    fun add(authorDto: AuthorDto): AuthorDto
     fun getById(id: Long): Optional<AuthorDto>
     fun deleteById(id: Long)
-    fun edit(authorDto: AuthorDto): Author
+    fun edit(authorDto: AuthorDto): AuthorDto
     fun getAll(): List<AuthorDto>
 }

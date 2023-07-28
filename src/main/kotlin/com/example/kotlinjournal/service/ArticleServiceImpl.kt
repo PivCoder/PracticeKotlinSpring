@@ -2,7 +2,6 @@ package com.example.kotlinjournal.service
 
 import com.example.kotlinjournal.dto.ArticleDto
 import com.example.kotlinjournal.exception.ElementNotFoundException
-import com.example.kotlinjournal.model.Article
 import com.example.kotlinjournal.repositoryes.ArticleRepository
 import com.example.kotlinjournal.service.api.ArticleService
 import org.springframework.stereotype.Service
@@ -12,8 +11,8 @@ import java.util.*
 class ArticleServiceImpl(
     private val articleRepository: ArticleRepository) : ArticleService {
 
-    override fun add(articleDto: ArticleDto): Article {
-        return articleRepository.save(articleDto.toEntity())
+    override fun add(articleDto: ArticleDto): ArticleDto {
+        return articleRepository.save(articleDto)
     }
 
     override fun getById(id: Long): Optional<ArticleDto> {
@@ -35,13 +34,13 @@ class ArticleServiceImpl(
         articleRepository.deleteById(id)
     }
 
-    override fun edit(articleDto: ArticleDto): Article {
+    override fun edit(articleDto: ArticleDto): ArticleDto {
         articleRepository.findById(articleDto.id)
             .orElseThrow{
                 throw ElementNotFoundException("Article with id " + articleDto.id + " not found!")
             }
 
-        return articleRepository.save(articleDto.toEntity())
+        return articleRepository.save(articleDto)
     }
 
     override fun getAll(): List<ArticleDto> {
