@@ -5,7 +5,7 @@ import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 
-abstract class DockerEnvocker {
+abstract class DockerInvoker {
     companion object {
         @Container
         private val postgreSQLContainer = PostgreSQLContainer("postgres:14")

@@ -10,7 +10,8 @@ import java.util.*
 @Service
 class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
     override fun add(cityDto: CityDto): CityDto {
-        return cityRepository.save(cityDto)
+        cityRepository.save(cityDto.toEntity())
+        return cityDto
     }
 
     override fun getById(id: Long): Optional<CityDto> {
@@ -35,7 +36,8 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
                 throw ElementNotFoundException("City with id " + cityDto.id + " not found!")
             }
 
-        return cityRepository.save(cityDto)
+        cityRepository.save(cityDto.toEntity())
+        return cityDto
     }
 
     override fun getAll(): List<CityDto> {

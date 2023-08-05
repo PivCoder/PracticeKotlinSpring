@@ -10,7 +10,8 @@ import java.util.*
 @Service
 class AuthorServiceImpl(private val authorRepository: AuthorRepository) : AuthorService {
     override fun add(authorDto: AuthorDto): AuthorDto {
-        return authorRepository.save(authorDto)
+        authorRepository.save(authorDto.toEntity())
+        return authorDto
     }
 
     override fun getById(id: Long): Optional<AuthorDto> {
@@ -24,7 +25,8 @@ class AuthorServiceImpl(private val authorRepository: AuthorRepository) : Author
                 it.organization,
                 it.city,
                 it.rating,
-                it.userType
+                it.userType,
+                it.articles
             )
         }
     }
@@ -39,7 +41,8 @@ class AuthorServiceImpl(private val authorRepository: AuthorRepository) : Author
                 throw ElementNotFoundException("Author with id " + authorDto.id + " not found!")
             }
 
-        return authorRepository.save(authorDto)
+        authorRepository.save(authorDto.toEntity())
+        return authorDto
     }
 
     override fun getAll(): List<AuthorDto> {
@@ -53,7 +56,8 @@ class AuthorServiceImpl(private val authorRepository: AuthorRepository) : Author
                 it.organization,
                 it.city,
                 it.rating,
-                it.userType
+                it.userType,
+                it.articles
             )
         }
     }

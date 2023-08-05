@@ -1,5 +1,6 @@
 package com.example.kotlinjournal.dto
 
+import com.example.kotlinjournal.model.Article
 import com.example.kotlinjournal.model.Author
 import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.model.Organization
@@ -20,7 +21,8 @@ data class AuthorDto(
     val organization: Organization,
     val city: City,
     val rating: Float,
-    val userType: UserTypes
+    val userType: UserTypes,
+    var articles: MutableList<Article>
 ){
     fun toEntity() : Author = Author(
         id = id,

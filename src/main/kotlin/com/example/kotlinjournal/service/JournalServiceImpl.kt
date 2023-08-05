@@ -10,7 +10,8 @@ import java.util.*
 @Service
 class JournalServiceImpl(private val journalRepository: JournalRepository) : JournalService {
     override fun add(journalDto: JournalDto): JournalDto {
-        return journalRepository.save(journalDto)
+        journalRepository.save(journalDto.toEntity())
+        return journalDto
     }
 
     override fun getById(id: Long): Optional<JournalDto> {
@@ -33,7 +34,8 @@ class JournalServiceImpl(private val journalRepository: JournalRepository) : Jou
                 throw ElementNotFoundException("Journal with id " + journalDto.id + " not found!")
             }
 
-        return journalRepository.save(journalDto)
+        journalRepository.save(journalDto.toEntity())
+        return journalDto
     }
 
     override fun getAll(): List<JournalDto> {

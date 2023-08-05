@@ -11,7 +11,8 @@ import java.util.*
 @Service
 class PublisherServiceImpl(private val publisherRepository: PublisherRepository) : PublisherService {
     override fun add(publisherDto: PublisherDto): PublisherDto {
-        return publisherRepository.save(publisherDto)
+        publisherRepository.save(publisherDto.toEntity())
+        return publisherDto
     }
 
     override fun getById(id: Long): Optional<PublisherDto> {
@@ -34,7 +35,8 @@ class PublisherServiceImpl(private val publisherRepository: PublisherRepository)
                 throw ElementNotFoundException("Publisher with id " + publisherDto.id + " not found!")
             }
 
-        return publisherRepository.save(publisherDto)
+        publisherRepository.save(publisherDto.toEntity())
+        return publisherDto
     }
 
     override fun getAll(): List<PublisherDto> {

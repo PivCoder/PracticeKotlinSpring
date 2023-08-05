@@ -1,6 +1,6 @@
 package com.example.kotlinjournal.repositoryes
 
-import com.example.kotlinjournal.dto.PublisherDto
+import com.example.kotlinjournal.model.Publisher
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface PublisherRepository : JpaRepository<PublisherDto, Long>
+interface PublisherRepository : JpaRepository<Publisher, Long>

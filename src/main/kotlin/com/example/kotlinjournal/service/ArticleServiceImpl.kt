@@ -12,7 +12,8 @@ class ArticleServiceImpl(
     private val articleRepository: ArticleRepository) : ArticleService {
 
     override fun add(articleDto: ArticleDto): ArticleDto {
-        return articleRepository.save(articleDto)
+        articleRepository.save(articleDto.toEntity())
+        return articleDto
     }
 
     override fun getById(id: Long): Optional<ArticleDto> {
@@ -40,7 +41,8 @@ class ArticleServiceImpl(
                 throw ElementNotFoundException("Article with id " + articleDto.id + " not found!")
             }
 
-        return articleRepository.save(articleDto)
+        articleRepository.save(articleDto.toEntity())
+        return articleDto
     }
 
     override fun getAll(): List<ArticleDto> {

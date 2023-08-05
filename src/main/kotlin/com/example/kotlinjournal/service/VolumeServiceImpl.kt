@@ -10,7 +10,8 @@ import java.util.*
 @Service
 class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : VolumeService {
     override fun add(volumeDto: VolumeDto): VolumeDto {
-        return volumeRepository.save(volumeDto)
+        volumeRepository.save(volumeDto.toEntity())
+        return volumeDto
     }
 
     override fun getById(id: Long): Optional<VolumeDto> {
@@ -33,7 +34,8 @@ class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : Volume
                 throw ElementNotFoundException("Volume with id " + volumeDto.id + " not found!")
             }
 
-        return volumeRepository.save(volumeDto)
+        volumeRepository.save(volumeDto.toEntity())
+        return volumeDto
     }
 
     override fun getAll(): List<VolumeDto> {
