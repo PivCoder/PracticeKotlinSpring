@@ -31,7 +31,7 @@ class OrganizationServiceImpl(private val organizationRepository: OrganizationRe
     override fun edit(organizationDto: OrganizationDto): OrganizationDto {
         organizationRepository.findById(organizationDto.id)
             .orElseThrow{
-                throw ElementNotFoundException("Organization with id " + organizationDto.id + " not found!")
+                throw ElementNotFoundException()
             }
 
         organizationRepository.save(organizationDto.toEntity())

@@ -38,7 +38,7 @@ class AuthorServiceImpl(private val authorRepository: AuthorRepository) : Author
     override fun edit(authorDto: AuthorDto): AuthorDto {
         authorRepository.findById(authorDto.id)
             .orElseThrow{
-                throw ElementNotFoundException("Author with id " + authorDto.id + " not found!")
+                throw ElementNotFoundException()
             }
 
         authorRepository.save(authorDto.toEntity())

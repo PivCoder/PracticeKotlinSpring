@@ -17,7 +17,7 @@ class ArticleServiceImpl(
     }
 
     override fun getById(id: Long): Optional<ArticleDto> {
-        return articleRepository.findById(id).map {
+        val article = articleRepository.findById(id).map {
             ArticleDto(
                 it.id,
                 it.name,
@@ -26,9 +26,12 @@ class ArticleServiceImpl(
                 it.volume,
                 it.countVisits,
                 it.countPages,
-                it.state
-            )
+                it.state)
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return Optional.of(article)
     }
 
     override fun deleteById(id: Long) {
@@ -38,7 +41,7 @@ class ArticleServiceImpl(
     override fun edit(articleDto: ArticleDto): ArticleDto {
         articleRepository.findById(articleDto.id)
             .orElseThrow{
-                throw ElementNotFoundException("Article with id " + articleDto.id + " not found!")
+                throw ElementNotFoundException()
             }
 
         articleRepository.save(articleDto.toEntity())
@@ -46,7 +49,7 @@ class ArticleServiceImpl(
     }
 
     override fun getAll(): List<ArticleDto> {
-        return articleRepository.findAll().map {
+        val article = articleRepository.findAll().map {
             ArticleDto(
                 it.id,
                 it.name,
@@ -58,5 +61,11 @@ class ArticleServiceImpl(
                 it.state
             )
         }
+
+        if (article.isEmpty()){
+            throw ElementNotFoundException()
+        }
+
+        return article
     }
 }
