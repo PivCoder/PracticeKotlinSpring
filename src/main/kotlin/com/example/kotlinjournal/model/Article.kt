@@ -5,6 +5,7 @@ import com.example.kotlinjournal.model.enums.States
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
+import java.time.Instant
 
 @Entity
 @Table(schema = "project", name = "article")
@@ -32,7 +33,10 @@ class Article(
     )
     var authors: MutableList<Author> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long,
+    createdOn: Instant,
+    updatedOn: Instant
+) : AbstractEntity(id, createdOn, updatedOn) {
 
     override fun toString(): String {
         return "Article(name='$name', " +

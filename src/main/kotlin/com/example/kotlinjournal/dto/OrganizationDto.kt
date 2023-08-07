@@ -2,6 +2,7 @@ package com.example.kotlinjournal.dto
 
 import com.example.kotlinjournal.model.Organization
 import jakarta.validation.constraints.NotBlank
+import java.time.Instant
 
 data class OrganizationDto(
     var id: Long,
@@ -11,6 +12,8 @@ data class OrganizationDto(
 ){
     fun toEntity() : Organization = Organization(
         id = id,
-        name = name
+        name = name,
+        createdOn = Instant.now(),
+        updatedOn = Instant.now()
     )
 }

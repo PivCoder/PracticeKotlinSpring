@@ -3,6 +3,7 @@ package com.example.kotlinjournal.model
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
+import java.time.Instant
 
 @Entity
 @Table(schema = "project", name = "journal")
@@ -19,7 +20,10 @@ class Journal(
     @OneToMany(mappedBy = "journal", fetch = FetchType.LAZY)
     var volumes: MutableList<Volume> = mutableListOf(),
 
-    id: Long) : AbstractEntity(id) {
+    id: Long,
+    createdOn: Instant,
+    updatedOn: Instant
+) : AbstractEntity(id, createdOn, updatedOn) {
 
     override fun toString(): String {
         return "Journal(name='$name')"

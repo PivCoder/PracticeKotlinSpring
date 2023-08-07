@@ -5,6 +5,7 @@ import com.example.kotlinjournal.model.Volume
 import com.example.kotlinjournal.model.enums.Categories
 import com.example.kotlinjournal.model.enums.States
 import jakarta.validation.constraints.NotBlank
+import java.time.Instant
 
 data class ArticleDto(
     var id: Long,
@@ -28,5 +29,9 @@ data class ArticleDto(
         volume = volume,
         state = state,
         countPages = countPages,
-        countVisits = countVisits)
+        countVisits = countVisits,
+        //TODO Нужно в целом переделать DTO. Не совсем понятно как обработать такие поля как время создания и обновления
+        createdOn = Instant.now(),
+        updatedOn = Instant.now()
+    )
 }

@@ -105,4 +105,25 @@ class IntegrationTestOfEntities : DockerInvoker(){
 
         println("ОТРАБОТАЛО СОЗДАНИЕ")
     }
+
+    @Test
+    @Order(2)
+    fun get(){
+        val publisher = publisherService.getById(1)
+        println(publisher)
+        val journal = journalService.getById(1)
+        println(journal)
+        val volume = volumeService.getById(1)
+        println(volume)
+        val article = articleService.getById(1)
+        println(article)
+
+        val organization = organizationService.getById(1)
+        println(organization)
+        val city = cityService.getById(1)
+        println(city)
+        val author = authorService.getById(1)
+        println(author)
+        println("ОТРАБОТАЛО ЧТЕНИЕ")
+    }
 }

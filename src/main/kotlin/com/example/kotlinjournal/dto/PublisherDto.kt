@@ -4,6 +4,7 @@ import com.example.kotlinjournal.model.Publisher
 import com.example.kotlinjournal.service.util.InputDataFormatUtil.Companion.ISSN_FORMAT
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
+import java.time.Instant
 
 data class PublisherDto(
     var id: Long,
@@ -17,6 +18,8 @@ data class PublisherDto(
     fun toEntity() : Publisher = Publisher(
         id = id,
         name = name,
-        ISSN = ISSN
+        ISSN = ISSN,
+        createdOn = Instant.now(),
+        updatedOn = Instant.now()
     )
 }

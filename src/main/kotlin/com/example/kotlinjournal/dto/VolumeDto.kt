@@ -4,6 +4,7 @@ import com.example.kotlinjournal.model.Journal
 import com.example.kotlinjournal.model.Volume
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
+import java.time.Instant
 
 data class VolumeDto(
     var id: Long,
@@ -17,6 +18,8 @@ data class VolumeDto(
     fun toEntity() : Volume = Volume(
         id = id,
         name = name,
-        journal = journal
+        journal = journal,
+        createdOn = Instant.now(),
+        updatedOn = Instant.now()
     )
 }

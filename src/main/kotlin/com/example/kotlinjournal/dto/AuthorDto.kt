@@ -6,6 +6,7 @@ import com.example.kotlinjournal.model.City
 import com.example.kotlinjournal.model.Organization
 import com.example.kotlinjournal.model.enums.UserTypes
 import jakarta.validation.constraints.NotBlank
+import java.time.Instant
 
 data class AuthorDto(
     var id: Long,
@@ -33,6 +34,8 @@ data class AuthorDto(
         organization = organization,
         city = city,
         rating = rating,
-        userType = userType
+        userType = userType,
+        createdOn = Instant.now(),
+        updatedOn = Instant.now()
     )
 }
