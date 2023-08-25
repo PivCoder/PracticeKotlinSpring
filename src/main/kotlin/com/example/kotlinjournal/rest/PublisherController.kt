@@ -14,7 +14,7 @@ class PublisherController(private val publisherService: PublisherService) {
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<PublisherDto> {
+    fun showOne(@PathVariable id: Long): PublisherDto {
         return publisherService.getById(id)
     }
 

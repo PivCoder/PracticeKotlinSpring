@@ -14,7 +14,7 @@ class AuthorController(private val authorService: AuthorService) {
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<AuthorDto> {
+    fun showOne(@PathVariable id: Long): AuthorDto {
         return authorService.getById(id)
     }
 

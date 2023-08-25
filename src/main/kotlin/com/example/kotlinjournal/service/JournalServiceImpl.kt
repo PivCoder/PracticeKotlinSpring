@@ -5,6 +5,7 @@ import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.repositoryes.JournalRepository
 import com.example.kotlinjournal.service.api.JournalService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
@@ -14,14 +15,18 @@ class JournalServiceImpl(private val journalRepository: JournalRepository) : Jou
         return journalDto
     }
 
-    override fun getById(id: Long): Optional<JournalDto> {
-        return journalRepository.findById(id).map {
+    override fun getById(id: Long): JournalDto {
+         val journal = journalRepository.findById(id).map {
             JournalDto(
                 it.id,
                 it.name,
                 it.publisher
             )
+        }.orElseThrow {
+             throw ElementNotFoundException()
         }
+
+        return journal
     }
 
     override fun deleteById(id: Long) {

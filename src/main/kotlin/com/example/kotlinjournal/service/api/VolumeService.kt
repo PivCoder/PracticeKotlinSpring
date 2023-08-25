@@ -5,7 +5,7 @@ import java.util.*
 
 interface VolumeService {
     fun add(volumeDto: VolumeDto): VolumeDto
-    fun getById(id: Long): Optional<VolumeDto>
+    fun getById(id: Long): VolumeDto
     fun deleteById(id: Long)
     fun edit(volumeDto: VolumeDto): VolumeDto
     fun getAll(): List<VolumeDto>

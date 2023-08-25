@@ -14,16 +14,24 @@ class CityServiceImpl(private val cityRepository: CityRepository) : CityService{
         return cityDto
     }
 
-    override fun getById(id: Long): Optional<CityDto> {
-        return cityRepository.findById(id).map {
+    override fun getById(id: Long): CityDto {
+        val city = cityRepository.findById(id).map {
             CityDto(it.id, it.name)
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return city
     }
 
-    override fun getByName(name: String): Optional<CityDto> {
-        return cityRepository.findByName(name).map {
+    override fun getByName(name: String): CityDto {
+        val city = cityRepository.findByName(name).map {
             CityDto(it.id, it.name)
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return city
     }
 
     override fun deleteById(id: Long) {

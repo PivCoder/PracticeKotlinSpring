@@ -14,14 +14,18 @@ class VolumeServiceImpl(private val volumeRepository: VolumeRepository) : Volume
         return volumeDto
     }
 
-    override fun getById(id: Long): Optional<VolumeDto> {
-        return volumeRepository.findById(id).map {
+    override fun getById(id: Long): VolumeDto {
+        val volume = volumeRepository.findById(id).map {
             VolumeDto(
                 it.id,
                 it.name,
                 it.journal
             )
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return volume
     }
 
     override fun deleteById(id: Long) {

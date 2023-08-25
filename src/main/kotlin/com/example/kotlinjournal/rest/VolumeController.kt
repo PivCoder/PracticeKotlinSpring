@@ -14,7 +14,7 @@ class VolumeController(private val volumeService: VolumeService) {
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<VolumeDto> {
+    fun showOne(@PathVariable id: Long): VolumeDto {
         return volumeService.getById(id)
     }
 

@@ -15,12 +15,12 @@ class CityController(private val cityService: CityService) {
     }
 
     @GetMapping("/{id}")
-    fun showOneCity(@PathVariable id: Long): Optional<CityDto> {
+    fun showOneCity(@PathVariable id: Long): CityDto {
         return cityService.getById(id)
     }
 
     @GetMapping("name/{name}")
-    fun showByName(@PathVariable name: String): Optional<CityDto> {
+    fun showByName(@PathVariable name: String): CityDto {
         return cityService.getByName(name)
     }
 

@@ -14,7 +14,7 @@ class OrganizationController(private val organizationService: OrganizationServic
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<OrganizationDto> {
+    fun showOne(@PathVariable id: Long): OrganizationDto {
         return organizationService.getById(id)
     }
 

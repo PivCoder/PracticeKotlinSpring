@@ -15,13 +15,17 @@ class OrganizationServiceImpl(private val organizationRepository: OrganizationRe
         return organizationDto
     }
 
-    override fun getById(id: Long): Optional<OrganizationDto> {
-        return organizationRepository.findById(id).map {
+    override fun getById(id: Long): OrganizationDto {
+        val organization = organizationRepository.findById(id).map {
             OrganizationDto(
                 it.id,
                 it.name
             )
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return organization
     }
 
     override fun deleteById(id: Long) {

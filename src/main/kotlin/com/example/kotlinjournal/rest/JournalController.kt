@@ -14,7 +14,7 @@ class JournalController(private val journalService: JournalService) {
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<JournalDto> {
+    fun showOne(@PathVariable id: Long): JournalDto {
         return journalService.getById(id)
     }
 

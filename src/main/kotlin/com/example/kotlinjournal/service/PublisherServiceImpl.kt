@@ -6,6 +6,7 @@ import com.example.kotlinjournal.model.Publisher
 import com.example.kotlinjournal.repositoryes.PublisherRepository
 import com.example.kotlinjournal.service.api.PublisherService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
@@ -15,14 +16,18 @@ class PublisherServiceImpl(private val publisherRepository: PublisherRepository)
         return publisherDto
     }
 
-    override fun getById(id: Long): Optional<PublisherDto> {
-        return publisherRepository.findById(id).map {
+    override fun getById(id: Long): PublisherDto {
+        val publisher = publisherRepository.findById(id).map {
             PublisherDto(
                 it.id,
                 it.name,
                 it.ISSN
             )
+        }.orElseThrow{
+            throw ElementNotFoundException()
         }
+
+        return publisher
     }
 
     override fun deleteById(id: Long) {

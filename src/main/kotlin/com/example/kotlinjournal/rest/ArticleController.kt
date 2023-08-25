@@ -14,7 +14,7 @@ class ArticleController(private val articleService: ArticleService) {
     }
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long): Optional<ArticleDto> {
+    fun showOne(@PathVariable id: Long): ArticleDto {
         return articleService.getById(id)
     }
 

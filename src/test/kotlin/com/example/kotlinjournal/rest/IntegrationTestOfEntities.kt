@@ -12,6 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.transaction.annotation.Transactional
 import org.testcontainers.junit.jupiter.Testcontainers
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -106,6 +107,7 @@ class IntegrationTestOfEntities : DockerInvoker(){
         println("ОТРАБОТАЛО СОЗДАНИЕ")
     }
 
+    @Transactional
     @Test
     @Order(2)
     fun get(){

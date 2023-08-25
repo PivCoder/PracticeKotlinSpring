@@ -6,7 +6,7 @@ import java.util.*
 
 interface AuthorService {
     fun add(authorDto: AuthorDto): AuthorDto
-    fun getById(id: Long): Optional<AuthorDto>
+    fun getById(id: Long): AuthorDto
     fun deleteById(id: Long)
     fun edit(authorDto: AuthorDto): AuthorDto
     fun getAll(): List<AuthorDto>

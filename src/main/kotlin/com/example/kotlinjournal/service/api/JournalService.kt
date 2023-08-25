@@ -5,7 +5,7 @@ import java.util.*
 
 interface JournalService {
     fun add(journalDto: JournalDto): JournalDto
-    fun getById(id: Long): Optional<JournalDto>
+    fun getById(id: Long): JournalDto
     fun deleteById(id: Long)
     fun edit(journalDto: JournalDto): JournalDto
     fun getAll(): List<JournalDto>

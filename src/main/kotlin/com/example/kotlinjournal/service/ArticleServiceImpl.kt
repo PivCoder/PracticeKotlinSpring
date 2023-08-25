@@ -5,7 +5,6 @@ import com.example.kotlinjournal.exception.ElementNotFoundException
 import com.example.kotlinjournal.repositoryes.ArticleRepository
 import com.example.kotlinjournal.service.api.ArticleService
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class ArticleServiceImpl(
@@ -16,7 +15,7 @@ class ArticleServiceImpl(
         return articleDto
     }
 
-    override fun getById(id: Long): Optional<ArticleDto> {
+    override fun getById(id: Long): ArticleDto {
         val article = articleRepository.findById(id).map {
             ArticleDto(
                 it.id,
@@ -31,7 +30,7 @@ class ArticleServiceImpl(
             throw ElementNotFoundException()
         }
 
-        return Optional.of(article)
+        return article
     }
 
     override fun deleteById(id: Long) {
@@ -49,7 +48,7 @@ class ArticleServiceImpl(
     }
 
     override fun getAll(): List<ArticleDto> {
-        val article = articleRepository.findAll().map {
+        return articleRepository.findAll().map {
             ArticleDto(
                 it.id,
                 it.name,
@@ -61,11 +60,5 @@ class ArticleServiceImpl(
                 it.state
             )
         }
-
-        if (article.isEmpty()){
-            throw ElementNotFoundException()
-        }
-
-        return article
     }
 }
